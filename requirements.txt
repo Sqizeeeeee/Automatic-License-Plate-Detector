@@ -1,6 +1,5 @@
 
-paddleocr
-paddlepaddle
+rapidocr_onnxruntime
 opencv-python
 ultralytics
 aiogram
