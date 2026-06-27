@@ -2,23 +2,24 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
+
 class PlateDetector:
     def __init__(self):
         self.model = YOLO('license_plate_detector.pt')
 
     def find_plate(self, image):
         results = self.model.predict(image, conf=0.5, verbose=False)
-        
+
         for result in results:
             for box in result.boxes:
                 coords = box.xyxy.flatten().tolist()
                 x1, y1, x2, y2 = map(int, coords)
-                
+
                 pad = 5
                 h_orig, w_orig = image.shape[:2]
-                raw_plate = image[max(0, y1-pad):min(h_orig, y2+pad), 
+                raw_plate = image[max(0, y1-pad):min(h_orig, y2+pad),
                                   max(0, x1-pad):min(w_orig, x2+pad)]
-                
+
                 corrected_plate = self.deskew_plate(raw_plate)
                 return corrected_plate
         return None
@@ -29,11 +30,11 @@ class PlateDetector:
 
         gray = cv2.cvtColor(plate, cv2.COLOR_BGR2GRAY)
         _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-        
+
         contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         if not contours:
             return plate
-            
+
         c = max(contours, key=cv2.contourArea)
         rect = cv2.minAreaRect(c)
         box = cv2.boxPoints(rect)
@@ -68,5 +69,5 @@ class PlateDetector:
 
         M = cv2.getPerspectiveTransform(ordered_box, dst_pts)
         warped = cv2.warpPerspective(plate, M, (maxWidth, maxHeight))
-            
+
         return warped

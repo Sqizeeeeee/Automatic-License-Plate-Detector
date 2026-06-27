@@ -2,6 +2,7 @@
 rapidocr_onnxruntime
 opencv-python
 ultralytics
+
 aiogram
 python-dotenv
-
+ruff

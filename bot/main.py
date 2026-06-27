@@ -1,20 +1,19 @@
-import os
 import asyncio
+import os
 import sys
+
 import cv2
-from aiogram import Bot, Dispatcher, types, F
+from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 from aiogram.types import FSInputFile
 from dotenv import load_dotenv
-
 
 load_dotenv()
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from detector import PlateDetector
-from ocr_engine import LicensePlateReader
-
+from detector import PlateDetector  # noqa: E402
+from ocr_engine import LicensePlateReader  # noqa: E402
 
 API_TOKEN = os.getenv("BOT_TOKEN")
 
@@ -41,23 +40,23 @@ async def handle_photo(message: types.Message):
 
     image = cv2.imread(photo_path)
     await message.answer("Ищу номер...")
-    
+
     plate_crop = detector.find_plate(image)
-    
+
     if plate_crop is not None:
 
         debug_path = f"debug_{photo.file_id}.jpg"
         cv2.imwrite(debug_path, plate_crop)
-        
+
         result_text = reader.read_plate(plate_crop)
-        
+
         if result_text:
             await message.answer(f"✅ Номер найден: `{result_text}`", parse_mode="Markdown")
         else:
             await message.answer("⚠️ Область номера найдена, но текст не распознан.")
-        
+
         await message.answer_photo(FSInputFile(debug_path), caption="Вот что я увидел")
-        
+
         os.remove(debug_path)
     else:
         await message.answer("❌ Номер на фото не обнаружен.")
