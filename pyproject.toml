@@ -1,0 +1,44 @@
+[project]
+name = "automatic-license-plate-detector"
+version = "0.1.0"
+description = "Telegram-бот для детекции и распознавания автомобильных номеров США и Европы с использованием YOLOv8, RapidOCR и OpenCV."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Vladimir" }
+]
+# Основные зависимости проекта (замена requirements.txt)
+dependencies = [
+    "aiogram>=3.0.0",
+    "opencv-python>=4.8.0",
+    "ultralytics>=8.0.0",
+    "rapidocr-onnxruntime>=1.3.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+# Зависимости для разработки (инструменты качества кода)
+dev = [
+    "ruff>=0.1.0",
+]
+
+[tool.ruff]
+# Целевая версия интерпретатора Python
+target-version = "py311"
+# Стандартная длина строки для читаемости кода
+line-length = 100
+
+[tool.ruff.lint]
+# Набор правил для проверки кода:
+# E, W - стандарты PEP8
+# F - поиск багов (неиспользуемые переменные, опечатки)
+# I - автоматическая сортировка импортов (замена isort)
+select = ["E", "W", "F", "I"]
+
+# Игнорируем правила, которые могут конфликтовать с автоматическим форматированием
+ignore = ["E203"]
+
+[tool.ruff.lint.isort]
+# Явно указываем Ruff, что папка `app` является вашим локальным модулем,
+# чтобы он правильно группировал и опускал её импорты в самый конец
+known-first-party = ["app"]

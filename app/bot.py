@@ -1,20 +1,16 @@
 import asyncio
 import os
-import sys
 
 import cv2
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 from aiogram.types import FSInputFile
 from aiogram.utils.chat_action import ChatActionSender
+from detector import PlateDetector
 from dotenv import load_dotenv
+from ocr_engine import LicensePlateReader
 
 load_dotenv()
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from detector import PlateDetector  # noqa: E402
-from ocr_engine import LicensePlateReader  # noqa: E402
 
 API_TOKEN = os.getenv("BOT_TOKEN")
 

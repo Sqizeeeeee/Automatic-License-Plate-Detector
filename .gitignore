@@ -5,4 +5,4 @@ images/
 __pycache__/
 .env
 .ruff_cache/
-bot/temp/
+app/temp/
