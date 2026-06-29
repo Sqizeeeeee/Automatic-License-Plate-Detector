@@ -2,7 +2,7 @@ import cv2
 from rapidocr_onnxruntime import RapidOCR
 
 
-class LicensePlateReader:
+class PlateReader:
     def __init__(self):
         self.engine = RapidOCR()
 
