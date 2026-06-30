@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 class PlateDetector:
     def __init__(self):
-        self.model = YOLO('license_plate_detector.pt')
+        self.model = YOLO('best.pt')
 
     def find_plate(self, image):
         results = self.model.predict(image, conf=0.5, verbose=False)
@@ -24,6 +24,16 @@ class PlateDetector:
                 return corrected_plate
         return None
 
+    def order_points(self, pts):
+        rect = np.zeros((4, 2), dtype="float32")
+        s = pts.sum(axis=1)
+        rect[0] = pts[np.argmin(s)]
+        rect[2] = pts[np.argmax(s)]
+        diff = np.diff(pts, axis=1)
+        rect[1] = pts[np.argmin(diff)]
+        rect[3] = pts[np.argmax(diff)]
+        return rect
+
     def deskew_plate(self, plate):
         if plate is None or plate.size == 0:
             return plate
@@ -40,17 +50,7 @@ class PlateDetector:
         box = cv2.boxPoints(rect)
         box = np.array(box).astype(int)
 
-        def order_points(pts):
-            rect = np.zeros((4, 2), dtype="float32")
-            s = pts.sum(axis=1)
-            rect[0] = pts[np.argmin(s)]
-            rect[2] = pts[np.argmax(s)]
-            diff = np.diff(pts, axis=1)
-            rect[1] = pts[np.argmin(diff)]
-            rect[3] = pts[np.argmax(diff)]
-            return rect
-
-        ordered_box = order_points(box)
+        ordered_box = self.order_points(box)
         (tl, tr, br, bl) = ordered_box
 
         widthA = np.sqrt(((br[0] - bl[0]) ** 2) + ((br[1] - bl[1]) ** 2))
@@ -60,6 +60,16 @@ class PlateDetector:
         heightA = np.sqrt(((tr[0] - br[0]) ** 2) + ((tr[1] - br[1]) ** 2))
         heightB = np.sqrt(((tl[0] - bl[0]) ** 2) + ((tl[1] - bl[1]) ** 2))
         maxHeight = max(int(heightA), int(heightB))
+
+        _, w_plate = plate.shape[:2]
+
+        if (maxWidth < 0.6 * w_plate) or maxHeight == 0:
+            return plate
+
+        aspect_ratio = maxWidth / maxHeight
+
+        if not (1.5 < aspect_ratio < 6):
+            return plate
 
         dst_pts = np.array([
             [0, 0],

@@ -10,6 +10,7 @@ from detector import PlateDetector
 from dotenv import load_dotenv
 from image_processor import ImageProcessor
 from ocr_engine import PlateReader
+from preprocessor import PlatePreprocessor
 from utils import setup_logger
 from video_processor import VideoProcessor
 
@@ -27,8 +28,9 @@ if not API_TOKEN:
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
+preprocessor = PlatePreprocessor()
 detector = PlateDetector()
-reader = PlateReader()
+reader = PlateReader(preprocessor)
 image_processor = ImageProcessor(detector, reader)
 video_processor = VideoProcessor(detector, reader)
 
@@ -53,20 +55,33 @@ async def photo_hadler(message: types.Message):
 
         async with ChatActionSender.upload_photo(bot=bot, chat_id=message.chat.id):
 
-            result_plate, result_text = await image_processor.process_image(image)
+            result_plate, result_text, confidence_level = await image_processor.process_image(image)
 
             if result_plate is not None:
-                debug_path = os.path.join(TEMP_DIR, f"debug_{photo.file_id}.jpg")
-                cv2.imwrite(debug_path, result_plate)
+                h, w = result_plate.shape[:2]
 
-                if result_text:
-                        await message.answer(f"Номер найден: `{result_text}`",
-                                             parse_mode="Markdown")
+                if h < 10 or w < 10:
+                    await message.answer("Область номера найдена, но кроп получился слишком маленьким для отправки.")
+                else:
+                    debug_path = os.path.join(TEMP_DIR, f"debug_{photo.file_id}.jpg")
+                    cv2.imwrite(debug_path, result_plate)
 
-                elif result_plate is not None and not result_text:
-                    await message.answer("Область номера найдена, но текст не распознан.")
+                    if result_text:
+                        confidence_labels = {
+                            "high": "✅ высокая уверенность",
+                            "mid": "⚠️ средняя уверенность",
+                            "low": "❗ низкая уверенность"
+                        }
+                        label = confidence_labels.get(confidence_level, "")
+                        await message.answer(
+                            f"Номер найден: `{result_text}`\n{label}",
+                            parse_mode="Markdown"
+                        )
 
-                await message.answer_photo(FSInputFile(debug_path), caption="Вот что я увидел")
+                    elif not result_text:
+                        await message.answer("Область номера найдена, но текст не распознан.")
+
+                    await message.answer_photo(FSInputFile(debug_path), caption="Вот что я увидел")
 
             else:
                 await message.answer("Номер на фото не обнаружен.")
@@ -89,15 +104,12 @@ async def photo_hadler(message: types.Message):
 @dp.message(F.video)
 async def video_hadler(message: types.Message):
 
-
-
     video = message.video
 
     file_info = await bot.get_file(video.file_id)
     video_path = os.path.join(TEMP_DIR, f"temp_{video.file_id}")
 
     await bot.download_file(file_info.file_path, video_path)
-
 
     try:
 
@@ -107,15 +119,19 @@ async def video_hadler(message: types.Message):
 
             result = "Вот что я нашел: "
 
-            for plate in all_plates:
-                result += f"{plate} "
+            for plate_text, confidence_level in all_plates:
+                confidence_labels = {
+                    "high": "✅",
+                    "mid": "⚠️",
+                    "low": "❗"
+                }
+                label = confidence_labels.get(confidence_level, "")
+                result += f"{plate_text} {label} "
 
             await message.answer(result)
 
         else:
             await message.answer("Номер на видео не обнаружен.")
-
-
 
     except Exception as e:
         logger.error(
@@ -129,7 +145,6 @@ async def video_hadler(message: types.Message):
     finally:
         if os.path.exists(video_path):
             os.remove(video_path)
-
 
 async def main():
     logger.info("Бот запущен и готов к работе")

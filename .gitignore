@@ -1,6 +1,8 @@
 
 
-images/
+train.cache
+val.cache
+detector_model/
 debug_images/
 .venv
 __pycache__/
