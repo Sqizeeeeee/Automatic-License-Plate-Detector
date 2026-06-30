@@ -61,7 +61,8 @@ async def photo_hadler(message: types.Message):
                 h, w = result_plate.shape[:2]
 
                 if h < 10 or w < 10:
-                    await message.answer("Область номера найдена, но кроп получился слишком маленьким для отправки.")
+                    await message.answer("Область номера найдена, но кроп " \
+                    "получился слишком маленьким для отправки.")
                 else:
                     debug_path = os.path.join(TEMP_DIR, f"debug_{photo.file_id}.jpg")
                     cv2.imwrite(debug_path, result_plate)

@@ -7,39 +7,23 @@ class PlateReader:
         self.engine = RapidOCR()
         self.preprocessor = preprocessor
 
-    # @staticmethod
-    # def _get_box_area(box_coordinates) -> int:
-    #     max_h = 0
-    #     max_w = 0
-    #     for first_coord in range(len(box_coordinates)):
-    #         for seckond_coord in range(first_coord + 1, len(box_coordinates)):
-    #             coord1 = box_coordinates[first_coord]
-    #             coord2 = box_coordinates[seckond_coord]
-    #             max_w = max(max_w, abs(coord1[0] - coord2[0]))
-    #             max_h = max(max_h, abs(coord1[1] - coord2[1]))
-
-    #     return int(max_h * max_w)
-
     @staticmethod
     def _get_box_center_y(box_coordinates) -> float:
-
         summ = 0
-
         for box in box_coordinates:
             summ += box[-1]
-
         return summ / 4
 
     @staticmethod
-    def _get_box_height(box_coordinates):
+    def _get_box_height(box_coordinates) -> float:
         ys = [point[1] for point in box_coordinates]
         return max(ys) - min(ys)
 
     @staticmethod
-    def _get_box_center_x(box_coordinates):
+    def _get_box_center_x(box_coordinates) -> float:
         xs = [point[0] for point in box_coordinates]
         return sum(xs) / len(xs)
-    
+
     @staticmethod
     def _get_confidence_level(avg_confidence: float) -> str:
         if avg_confidence >= 0.9:
@@ -53,7 +37,6 @@ class PlateReader:
         if not results:
             return []
 
-        # Проход 1: фильтр по высоте (отсекаем мелкий контекстный текст)
         heights = [self._get_box_height(res[0]) for res in results]
         max_height = max(heights)
 
@@ -65,7 +48,6 @@ class PlateReader:
         if not height_filtered:
             return []
 
-        # Проход 2: фильтр по y-выравниванию (отсекаем выбросы среди оставшихся)
         center_ys = [self._get_box_center_y(res[0]) for res in height_filtered]
         median_center_y = np.median(center_ys)
 
@@ -84,7 +66,8 @@ class PlateReader:
             if abs(current_center_y - median_center_y) > max_deviation:
                 continue
 
-            clean_text = "".join(filter(str.isalnum, text)).upper()
+            # фильтруем только ASCII алфанумерик — отсекаем иероглифы и прочий мусор
+            clean_text = "".join(c for c in text if c.isascii() and c.isalnum()).upper()
             if not clean_text:
                 continue
 
@@ -93,16 +76,20 @@ class PlateReader:
         return valid_chunks
 
     def _assemble_text(self, valid_chunks):
-        # valid_chunks - список кортежей (coords, clean_text, confidence)
+        if not valid_chunks:
+            return None, None
 
-        sorted_chunks = sorted(valid_chunks, key=lambda chunk: self._get_box_center_x(chunk[0]))
+        sorted_chunks = sorted(
+            valid_chunks,
+            key=lambda chunk: self._get_box_center_x(chunk[0])
+        )
 
         final_text = "".join(chunk[1] for chunk in sorted_chunks)
 
         if len(final_text) <= 2:
             return None, None
 
-        total_weight = sum(len(text) for _, text, conf in sorted_chunks)
+        total_weight = sum(len(text) for _, text, _ in sorted_chunks)
         weighted_sum = sum(len(text) * conf for _, text, conf in sorted_chunks)
         avg_confidence = weighted_sum / total_weight if total_weight > 0 else 0.0
 
@@ -121,27 +108,7 @@ class PlateReader:
         if not chunks:
             return None, None
 
-        chunks = self._filter_chunks(chunks)
-        result_text, confidence_level = self._assemble_text(chunks)
+        filtered = self._filter_chunks(chunks)
+        result_text, confidence_level = self._assemble_text(filtered)
 
         return result_text, confidence_level
-
-    def read_plate(self, image):
-        if image is None:
-            return None
-
-        processed = self.preprocessor.process(image)
-
-        chunks, _ = self.engine(processed)
-
-        print("RAW chunks:", chunks)
-
-        if not chunks:
-            return None
-
-        chunks = self._filter_chunks(chunks)
-        print("FILTERED chunks:", chunks)
-        result = self._assemble_text(chunks)
-
-
-        return result

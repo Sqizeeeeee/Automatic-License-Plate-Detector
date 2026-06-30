@@ -15,6 +15,7 @@ class VideoProcessor:
         cap = cv2.VideoCapture(video_path)
 
         frame_count = 0
+        plates_seen = {}
         all_plates = set()
 
         try:
@@ -34,11 +35,17 @@ class VideoProcessor:
 
                 if plate_crop is not None:
 
-                    result_text = await asyncio.to_thread(self.reader.read_plate, plate_crop)
+                    result_text, confidence_level = await asyncio.to_thread(self.reader.read_plate,
+                                                                            plate_crop)
 
-                    if result_text:
+                    if result_text and confidence_level:
+                        if result_text not in plates_seen:
+                            plates_seen[result_text] = []
+                        plates_seen[result_text].append(confidence_level)
 
-                        all_plates.add(result_text)
+            for text, levels in plates_seen.items():
+                final_level = max(set(levels), key=levels.count)
+                all_plates.add((text, final_level))
 
             return all_plates
 
@@ -48,5 +55,3 @@ class VideoProcessor:
 
         finally:
             cap.release()
-
-

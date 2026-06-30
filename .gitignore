@@ -4,6 +4,7 @@ train.cache
 val.cache
 detector_model/
 debug_images/
+OCR_TASK.md
 .venv
 __pycache__/
 .env

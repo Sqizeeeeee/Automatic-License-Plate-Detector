@@ -13,15 +13,16 @@ class ImageProcessor:
         try:
 
             result_text = None
+            confidence_level = None
 
             plate_crop = await asyncio.to_thread(self.detector.find_plate, image)
 
             if plate_crop is not None:
+                result_text, confidence_level = await asyncio.to_thread(self.reader.read_plate,
+                                                                        plate_crop)
 
-                result_text = await asyncio.to_thread(self.reader.read_plate, plate_crop)
-
-            return (plate_crop, result_text)
+            return (plate_crop, result_text, confidence_level)
 
         except Exception as e:
             logger.error(f"Ошибка при обработке картинки: {e}", exc_info=True)
-            return (None, None)
+            return (None, None, None)
