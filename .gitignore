@@ -2,7 +2,8 @@
 
 train.cache
 val.cache
-detector_model/
+detector_model/*
+!detector_model/train.py
 debug_images/
 OCR_TASK.md
 .venv
