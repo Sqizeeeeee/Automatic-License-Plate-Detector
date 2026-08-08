@@ -1,11 +1,15 @@
+import os
+
 import cv2
 import numpy as np
 from ultralytics import YOLO
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODEL_PATH = os.path.join(BASE_DIR, "weights", "detector_best.pt")
 
 class PlateDetector:
     def __init__(self):
-        self.model = YOLO('best.pt')
+        self.model = YOLO(MODEL_PATH)
 
     def find_plate(self, image):
         results = self.model.predict(image, conf=0.5, verbose=False)

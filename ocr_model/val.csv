@@ -1,0 +1,182 @@
+image_path,plate_text,plate_region
+eu1/train/IF05TAC.png,IF05TAC,Unknown
+eu1/train/NE62697.png,NE62697,Unknown
+eu1/val/TG80229.png,TG80229,Unknown
+eu1/train/1131XD29.jpg,1131XD29,Unknown
+eu1/train/ZG56409.png,ZG56409,Unknown
+eu1/train/MDLAYK7.png,MDLAYK7,Unknown
+eu1/train/6473GZR.png,6473GZR,Unknown
+eu1/train/CM229MN_1.png,CM229MN,Unknown
+eu2/crops/test_049.jpg,KMBORAK,Unknown
+eu1/train/BK678YW.jpg,BK678YW,Unknown
+eu1/train/1KTT82.png,1KTT82,Unknown
+eu1/train/FB670AV.png,FB670AV,Unknown
+eu1/train/1500WD68.jpg,1500WD68,Unknown
+eu1/train/CH516BB.jpg,CH516BB,Unknown
+eu1/val/BV445NZ.png,BV445NZ,Unknown
+eu1/train/EC377VM.jpg,EC377VM,Unknown
+eu1/test/BM602BT.png,BM602BT,Unknown
+eu1/val/IBZ4185.png,IBZ4185,Unknown
+eu1/train/ROWCQ66.png,ROWCQ66,Unknown
+eu1/train/B311ALY.png,B311ALY,Unknown
+eu1/train/XK15588.png,XK15588,Unknown
+eu1/train/BP78222.png,BP78222,Unknown
+eu1/train/AH595PC.png,AH595PC,Unknown
+eu1/test/LYF277.png,LYF277,Unknown
+eu1/train/4CO78E.png,4CO78E,Unknown
+eu1/train/FG047WG.jpg,FG047WG,Unknown
+eu1/train/DQ200PB_1.png,DQ200PB,Unknown
+eu1/train/L0JJ1011.png,L0JJ1011,Unknown
+eu1/train/19LPBL1.png,19LPBL1,Unknown
+eu1/train/ABGAP33.png,ABGAP33,Unknown
+eu1/test/AL193VP.jpg,AL193VP,Unknown
+eu2/crops/test_012.jpg,RK291AT,Unknown
+eu1/train/VU455CG.png,VU455CG,Unknown
+eu1/test/381ATK83_1.png,381ATK83,Unknown
+eu1/train/BV547PG.png,BV547PG,Unknown
+eu1/train/ABA1234.JPG,ABA1234,Unknown
+eu1/train/WW238BB.jpg,WW238BB,Unknown
+eu1/train/EL493LK.jpg,EL493LK,Unknown
+eu2/crops/eu4.jpg,BIMMIAN,Unknown
+eu1/train/7B71000.png,7B71000,Unknown
+eu1/train/FM335RQ.jpg,FM335RQ,Unknown
+eu1/val/UOU695.png,UOU695,Unknown
+eu1/train/7796ZA30.png,7796ZA30,Unknown
+eu1/train/FH921SN.jpg,FH921SN,Unknown
+eu1/train/PP52889.png,PP52889,Unknown
+eu1/train/MBCL600.JPG,MBCL600,Unknown
+eu1/train/IF99STK_1.png,IF99STK,Unknown
+eu1/val/CS229EP.jpg,CS229EP,Unknown
+eu1/train/FF252ND.jpg,FF252ND,Unknown
+eu1/train/VD5886Z.png,VD5886Z,Unknown
+eu1/train/W304JF.jpg,W304JF,Unknown
+eu1/train/4969ZD56.png,4969ZD56,Unknown
+eu1/train/BLC971.png,BLC971,Unknown
+eu1/train/45XM6.png,45XM6,Unknown
+eu1/train/EN009NR.jpg,EN009NR,Unknown
+eu1/test/8427XX29.jpg,8427XX29,Unknown
+eu1/test/I008646.png,I008646,Unknown
+eu1/val/WD84851.png,WD84851,Unknown
+eu1/train/EZ931ZH.jpg,EZ931ZH,Unknown
+eu1/train/ZH86183.png,ZH86183,Unknown
+eu1/train/QBY384.png,QBY384,Unknown
+eu1/train/103YC68.jpg,103YC68,Unknown
+eu1/val/MH04RDO.png,MH04RDO,Unknown
+eu2/crops/test_036.jpg,RK708AI,Unknown
+eu1/train/CV594AF.png,CV594AF,Unknown
+eu2/crops/test_053.jpg,RK715AA,Unknown
+eu2/crops/test_061.jpg,MT456BJ,Unknown
+eu1/train/DB48SCF.png,DB48SCF,Unknown
+eu1/train/CR214ZQ.jpg,CR214ZQ,Unknown
+eu1/train/G803IA.png,G803IA,Unknown
+eu1/train/GB55CMW.png,GB55CMW,Unknown
+eu1/train/B310VLV.png,B310VLV,Unknown
+eu1/test/FC882MC.jpg,FC882MC,Unknown
+eu1/train/AE335VY.jpg,AE335VY,Unknown
+eu1/train/B3456.png,B3456,Unknown
+eu2/crops/test_031.jpg,RK619AS,Unknown
+eu1/val/THW82986.png,THW82986,Unknown
+eu1/train/DP933CD.jpg,DP933CD,Unknown
+eu1/train/CK7A1DT.png,CK7A1DT,Unknown
+eu1/val/SMC9348.JPG,SMC9348,Unknown
+eu1/train/SAN4002.png,SAN4002,Unknown
+eu2/crops/test_008.jpg,LM298AI,Unknown
+eu1/train/MAX059.png,MAX059,Unknown
+eu1/test/DANKE82.png,DANKE82,Unknown
+us3/usimages/ca884.png,ILEG0,United States
+us3/usimages/in1658.png,N0G0DS,United States
+us2/crops/wts-lg-000021.jpg,BGB3282,United States
+us3/usimages/wi454.png,379GXY,United States
+us3/usimages/il1339.png,4141119,United States
+us3/usimages/nj243.png,5520,United States
+us3/usimages/wv1113.png,OAM145,United States
+us3/usimages/ky69.png,344JMD,United States
+us2/crops/car7.jpg,10DTM,United States
+us3/usimages/nm1265.png,LLY441,United States
+us3/usimages/ky452.png,209JVC,United States
+us3/usimages/vt1305.png,APC838,United States
+us2/crops/car18.jpg,SB3X6N,United States
+us2/crops/car9-2.jpg,4639520,United States
+us3/usimages/il1148.png,G343404,United States
+us3/usimages/sc432.png,CDI441,United States
+us3/usimages/ia1025.png,469BWW,United States
+us3/usimages/va1664.png,265257,United States
+us2/crops/wts-lg-000052.jpg,DK7J8G,United States
+us3/usimages/ga31.png,APM5740,United States
+us3/usimages/md1392.png,19024K,United States
+us3/usimages/nd916.png,BB63,United States
+us3/usimages/vt792.png,19012,United States
+us3/usimages/nh811.png,GAGGED,United States
+us3/usimages/or266.png,NY2ND,United States
+us3/usimages/al1662.png,2A3633A,United States
+us3/usimages/ri502.png,723579,United States
+us3/usimages/md284.png,017M149,United States
+us2/crops/316b64c0-55bf-4079-a1c0-d93f461a576f.jpg,K179658,United States
+us3/usimages/me20.png,0MYSTRZ,United States
+us3/usimages/nm576.png,LMB203,United States
+us3/usimages/tx1455.png,BC5X489,United States
+us3/usimages/ri342.png,KS693,United States
+us3/usimages/fl234.png,H507VU,United States
+us2/crops/wts-lg-000134.jpg,6WAW786,United States
+us3/usimages/il393.png,A323060,United States
+us3/usimages/me1518.png,1435GK,United States
+us3/usimages/fl1167.png,7164HF,United States
+us3/usimages/me872.png,8348KQ,United States
+us2/crops/wts-lg-000056.jpg,SZA679,United States
+us3/usimages/wv495.png,9AK856,United States
+us2/crops/us1.jpg,4PCI264,United States
+us3/usimages/ne280.png,0JW695,United States
+us3/usimages/la1213.png,NPJ766,United States
+us3/usimages/ar1282.png,318ACZ,United States
+us3/usimages/co1431.png,832AXV,United States
+us2/crops/wts-lg-000014.jpg,DG2Z6U,United States
+us3/usimages/nh1273.png,S0X1FAN,United States
+us3/usimages/nj814.png,D15AEC,United States
+us3/usimages/ms1342.png,G026,United States
+us3/usimages/de793.png,69617,United States
+us3/usimages/or1459.png,XSZ075,United States
+us3/usimages/mi309.png,AA00A,United States
+us3/usimages/hi505.png,KTU979,United States
+us3/usimages/wv1646.png,4W5825,United States
+us3/usimages/ks1105.png,987BYN,United States
+us2/crops/wts-lg-000074.jpg,AG6V1W,United States
+us3/usimages/al1204.png,9A9990A,United States
+us3/usimages/wv496.png,OEC617,United States
+us3/usimages/ca780.png,SAMPLE1,United States
+us2/crops/wts-lg-000178.jpg,6LSU216,United States
+us2/crops/wts-lg-000169.jpg,47366J1,United States
+us3/usimages/nj885.png,RZJ80D,United States
+us3/usimages/nc977.png,Q0900,United States
+us3/usimages/fl830.png,981XXH,United States
+us3/usimages/or526.png,00617,United States
+us3/usimages/ok48.png,FBH476,United States
+us3/usimages/nc79.png,0BX40699,United States
+us2/crops/wts-lg-000156.jpg,5TZA419,United States
+us3/usimages/ne90.png,0RZ466,United States
+us3/usimages/ga1484.png,BMN2079,United States
+us3/usimages/va1437.png,1338UN,United States
+us2/crops/f8fc5e59-9083-466b-ae3f-6b869a0b257b.jpg,UH1F0F,United States
+us2/crops/car22.jpg,CH0P8Y,United States
+us3/usimages/nd99.png,HCA520,United States
+us3/usimages/me1605.png,481ABQ,United States
+us2/crops/wts-lg-000069.jpg,TWF220,United States
+us3/usimages/ar810.png,NOX226,United States
+us3/usimages/wi291.png,616FAF,United States
+us2/crops/wts-lg-000118.jpg,853FL,United States
+us3/usimages/me1074.png,KHAAANN,United States
+us3/usimages/ia695.png,683ZCL,United States
+us2/crops/car19.jpg,378DXR,United States
+us3/usimages/ak848.png,FPJ331,United States
+us3/usimages/nv698.png,LTLGT0,United States
+us3/usimages/dc522.png,BJ3710,United States
+us2/crops/wts-lg-000032.jpg,21A1BX,United States
+us3/usimages/la275.png,TAF389,United States
+us3/usimages/va1072.png,LW1257,United States
+us3/usimages/ga1260.png,BJL833,United States
+us2/crops/wts-lg-000190.jpg,6RYJ486,United States
+us3/usimages/ct499.png,471NZO,United States
+us3/usimages/nj864.png,ZMU91A,United States
+us2/crops/wts-lg-000151.jpg,5RIN962,United States
+us3/usimages/ut427.png,887ZFB,United States
+us2/crops/wts-lg-000062.jpg,GT679A,United States
+us3/usimages/nd93.png,HNB773,United States

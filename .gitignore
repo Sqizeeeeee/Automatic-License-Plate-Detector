@@ -1,14 +1,32 @@
 
 
-train.cache
-val.cache
+
 detector_model/*
 !detector_model/train.py
+
+ocr_model/*
+!ocr_model/build.py
+!ocr_model/inspect_dataset.py
+!ocr_model/prepare_split.py
+!ocr_model/dataset.csv
+!ocr_model/train.csv
+!ocr_model/val.csv
+
 debug_images/
+
+
 OCR_TASK.md
-.venv
+
+
 __pycache__/
-.env
 .ruff_cache/
+train.cache
+val.cache
+
+.env
+.venv
+
 app/temp/
 system.log
+
+.DS_Store
