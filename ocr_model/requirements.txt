@@ -1,0 +1,2 @@
+
+fast-plate-ocr[train,onnx]

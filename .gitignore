@@ -11,6 +11,7 @@ ocr_model/*
 !ocr_model/dataset.csv
 !ocr_model/train.csv
 !ocr_model/val.csv
+!ocr_model/requirements.txt
 
 debug_images/
 
