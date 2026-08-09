@@ -1,17 +1,26 @@
-import os
-
 import cv2
 import numpy as np
 from ultralytics import YOLO
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MODEL_PATH = os.path.join(BASE_DIR, "weights", "detector_best.pt")
 
 class PlateDetector:
     def __init__(self):
-        self.model = YOLO(MODEL_PATH)
+        self.model = YOLO('weights/detector_best.pt')
 
     def find_plate(self, image):
+        result = self.find_plate_with_bbox(image)
+        if result is None:
+            return None
+        crop, _bbox = result
+        return crop
+
+    def find_plate_with_bbox(self, image):
+        """
+        Как find_plate, но дополнительно возвращает координаты бокса
+        (x1, y1, x2, y2) в системе координат исходного изображения,
+        до паддинга и deskew. Используется video_processor для трекинга
+        одной машины между кадрами.
+        """
         results = self.model.predict(image, conf=0.5, verbose=False)
 
         for result in results:
@@ -25,7 +34,7 @@ class PlateDetector:
                                   max(0, x1-pad):min(w_orig, x2+pad)]
 
                 corrected_plate = self.deskew_plate(raw_plate)
-                return corrected_plate
+                return corrected_plate, (x1, y1, x2, y2)
         return None
 
     def order_points(self, pts):
