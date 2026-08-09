@@ -16,9 +16,6 @@ ocr_model/*
 
 debug_images/
 
-
-OCR_TASK.md
-
 __pycache__/
 .ruff_cache/
 train.cache
