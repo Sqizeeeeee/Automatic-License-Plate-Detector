@@ -6,11 +6,11 @@ from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 from aiogram.types import FSInputFile
 from aiogram.utils.chat_action import ChatActionSender
-from detector import PlateDetector
+from detection.plate_detector import PlateDetector
 from dotenv import load_dotenv
 from image_processor import ImageProcessor
-from ocr_engine import PlateReader
-from preprocessor import PlatePreprocessor
+from ocr.plate_reader import PlateReader
+from preprocessing.plate_preprocessor import PlatePreprocessor
 from utils import setup_logger
 from video_processor import VideoProcessor
 

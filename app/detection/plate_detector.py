@@ -5,7 +5,7 @@ from ultralytics import YOLO
 
 class PlateDetector:
     def __init__(self):
-        self.model = YOLO('weights/detector_best.pt')
+        self.model = YOLO('weights/plate_detector.pt')
 
     def find_plate(self, image):
         result = self.find_plate_with_bbox(image)

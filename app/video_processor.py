@@ -2,7 +2,7 @@ import asyncio
 import logging
 
 import cv2
-from plate_tracker import VehicleTrack, compute_iou
+from tracking.plate_tracker import VehicleTrack, compute_iou
 
 logger = logging.getLogger("PlateDetectorBot.video_processor")
 

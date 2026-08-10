@@ -2,7 +2,7 @@ import os
 
 from fast_plate_ocr import LicensePlateRecognizer
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODEL_PATH = os.path.join(BASE_DIR, "weights", "ocr_best.onnx")
 PLATE_CONFIG_PATH = os.path.join(BASE_DIR, "weights", "ocr_plate_config.yaml")
 
