@@ -16,9 +16,9 @@
 Ниже — примеры работы фото-пайплайна на разных условиях съёмки (ракурс, освещение, контровый свет):
 
 <p align="center">
-  <img src="docs/example-day.png" width="270" />
-  <img src="docs/example-medium-confidence.png" width="270" />
-  <img src="docs/example-lowlight.png" width="270" />
+  <img src="about/images/example-day.png" width="270" />
+  <img src="about/images/example-medium-confidence.png" width="270" />
+  <img src="about/images/example-lowlight.png" width="270" />
 </p>
 
 > На данный момент стабильно работает пайплайн для статичных изображений. Обработка видео (трекинг автомобиля между кадрами и агрегация нескольких прочтений номера) реализована, но пока не доведена до уровня надёжности, достаточного для демонстрации.
